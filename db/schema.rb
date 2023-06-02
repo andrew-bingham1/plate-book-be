@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_223420) do
   end
 
   create_table "plate_posts", force: :cascade do |t|
-    t.string "photo_url"
+    t.string "photo"
     t.bigint "plate_id", null: false
     t.bigint "post_id", null: false
     t.datetime "created_at", null: false

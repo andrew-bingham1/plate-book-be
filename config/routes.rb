@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:index]
-      resources :posts, only: [:index, :create]
-      resources :plates, only: [:index]
+      resources :users, only: [:index, :show]
+      resources :posts, only: [:index, :show, :create]
+      resources :plates, only: [:index, :show]
     end
   end
 end

@@ -23,4 +23,5 @@ class PostSerializer
       }
     end
   end
+  
 end

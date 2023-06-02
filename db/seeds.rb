@@ -15,5 +15,9 @@
 User.create(username: "test", email: "somethingcrazy@gmail.com", uid: "1234", token: "1234")
 User.create(username: "test2", email: "anotheremail@gmail.com", uid: "5678", token: "5678")
 x = Plate.create(plate_number: "ABC-1234")
+y = Plate.create(plate_number: "MKV-1234")
 x.posts.create(title: "Test Post", body: "This is a test post", user_id: 1)
 x.posts.create(title: "Test Post 2", body: "This is a test post 2", user_id: 2)
+
+y.posts.create(title: "Test Post 3", body: "This is a test post 3", user_id: 1)
+y.posts.create(title: "Test Post 4", body: "This is a test post 4", user_id: 2)

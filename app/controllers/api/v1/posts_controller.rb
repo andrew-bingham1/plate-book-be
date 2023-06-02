@@ -6,6 +6,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def create
+  #  if User.find(params[:id]).token == params[:token] ****
     json = JSON.parse(params.to_json, symbolize_names: true)
     # plate = Plate.find_or_create_by(plate_number: json[:params][:plate_number])
     # post = Post.create(title: json[:params][:title], body: json[:params][:body])

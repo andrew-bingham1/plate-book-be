@@ -35,7 +35,7 @@ gem "bootsnap", require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
-  gem 'dockerfile-rails', '~> 1.4', '>= 1.4.1'
+  gem 'dockerfile-rails'
   gem 'jsonapi-serializer'
   gem 'faraday'
   gem 'figaro'

@@ -9,7 +9,7 @@ class PostSerializer
   
   attributes :plate_posts do |post|
     post.plate_posts.map do |plate_post|
-      photo_url: plate_post.photo_url
+      {photo_url: plate_post.photo_url}
     end
   end
   
@@ -22,5 +22,9 @@ class PostSerializer
         post_id: comment.post_id
       }
     end
+  end
+
+  attribute :parent_plates do |object|
+    object.plates
   end
 end

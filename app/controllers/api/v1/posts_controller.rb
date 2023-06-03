@@ -6,10 +6,16 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def create
-  #  if User.find(params[:id]).token == params[:token] ****
     json = JSON.parse(params.to_json, symbolize_names: true)
-    # plate = Plate.find_or_create_by(plate_number: json[:params][:plate_number])
-    # post = Post.create(title: json[:params][:title], body: json[:params][:body])
+    
+    if user = User.find_by_id(json[:params][:id])
+      post = Post.create(title: json[:params][:title], body: json[:params][:body], user_id: json[:params][:id])
+      plate = Plate.find_or_create_by(plate_number: json[:params][:plate_number])
+      plate.plate_posts.create(post_id: post.id, photo_url: json[:params][:photo_url])
+      render json: PostSerializer.new(post), status: :created
+    else ActiveRecord::RecordNotFound
+      render json: {errors: "User not found"}, status: 422
+    end
   end
   
   def show 

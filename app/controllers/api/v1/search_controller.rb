@@ -5,7 +5,7 @@ class Api::V1::SearchController < ApplicationController
     elsif params[:categoty] == "plates"
       render json: PostSerializer.new(Post.search(params[:query])), status: 200
     else
-      render json: {error: "That category does not exist."}, status: 404
+      render json: {errors: "That category does not exist."}, status: 404
     end
   end
 end

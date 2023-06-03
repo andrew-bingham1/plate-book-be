@@ -32,4 +32,17 @@ RSpec.describe "SearchController#index" do
       expect(json[:data].first[:id].to_i).to eq(@post_2.id)
     end
   end
+
+  describe "sad paths" do
+    it "category does not exist" do
+      get "/api/v1/search", params: {
+        category: "samuel",
+        query: "pony"
+      }
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(404)
+      expect(json[:errors]).to eq("That category does not exist.")
+    end
+  end
 end

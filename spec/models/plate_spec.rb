@@ -30,5 +30,9 @@ RSpec.describe Plate, type: :model do
         i -= 1
       end
     end
+
+    it "partial match 2" do
+      expect(Plate.search("E").length).to eq(3)
+    end
   end
 end

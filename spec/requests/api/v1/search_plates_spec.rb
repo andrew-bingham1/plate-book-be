@@ -21,10 +21,9 @@ RSpec.describe "SearchController#index" do
       }
       json = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(200)
-
       expect(json[:data].count).to eq(3)
       json[:data].each do |plate|
-        expect(expected.includes?(plate[:id])).to eq(true)
+        expect(expected.include?(plate[:id].to_i)).to eq(true)
       end
     end
 
@@ -38,7 +37,7 @@ RSpec.describe "SearchController#index" do
 
       expect(json[:data].count).to eq(3)
       json[:data].each do |plate|
-        expect(expected.includes?(plate[:id])).to eq(true)
+        expect(expected.include?(plate[:id].to_i)).to eq(true)
       end
     end
 
@@ -67,6 +66,17 @@ RSpec.describe "SearchController#index" do
 
       expect(response).to have_http_status(404)
       expect(json[:errors]).to eq("That category does not exist.")
+    end
+
+    it "empty results" do
+      get "/api/v1/search", params: {
+        category: "plates",
+        query: "pony"
+      }
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(200)
+      expect(json[:data]).to eq([])
     end
   end
 end

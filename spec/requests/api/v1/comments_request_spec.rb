@@ -16,7 +16,7 @@ RSpec.describe 'Comments API', type: :request do
       
       comments = JSON.parse(response.body, symbolize_names: true)
       comment= comments[:data]
-      require 'pry'; binding.pry
+      
       expect(comment).to have_key(:id)
       expect(comment).to have_key(:type)
       expect(comment).to have_key(:attributes)

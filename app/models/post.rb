@@ -5,4 +5,8 @@ class Post < ApplicationRecord
   has_many :comments
 
   validates_presence_of :user_id, :title, :body
+
+  def self.search(query)
+    Post.where("title ILIKE ?", "%#{query}%")
+  end
 end

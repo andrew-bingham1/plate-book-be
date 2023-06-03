@@ -72,3 +72,15 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+def test_data_posts
+  @user_1 = User.create!(username: "User 1", email: "user1@gmail.com", uid: "1234", token: "1234")
+  @user_2 = User.create!(username: "User 2", email: "user2@gmail.com", uid: "5678", token: "5678")
+  @user_3 = User.create!(username: "User 3", email: "user3@gmail.com", uid: "9101", token: "9101")
+  @plate_1 = Plate.create!(plate_number: "ABC-1234")
+  @plate_2 = Plate.create!(plate_number: "DEF-5678")
+  @plate_1.posts.create!(title: "Test Post 1", body: "This is a test post", user_id: @user_1.id)
+  @plate_2.posts.create!(title: "Test Post 2", body: "This is a test post 2", user_id: @user_2.id)
+  @plate_1.posts.create!(title: "Test Post 3", body: "This is a test post 3", user_id: @user_1.id)
+  @plate_2.posts.create!(title: "Test Post 4", body: "This is a test post 4", user_id: @user_2.id)
+end

@@ -10,6 +10,13 @@ jobs:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
+      - image: cimg/postgres:14.7
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: plate_book_test
+          POSTGRES_HOST_AUTH_METHOD: trust
     steps:
       - checkout
       - ruby/install-deps
@@ -17,10 +24,14 @@ jobs:
           name: Install Yarn dependencies
           command: yarn install --check-files
       - run:
-          name: Precompile Assets
-          command: bundle exec rails assets:precompile
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bin/rails db:{create,migrate} --trace
       - ruby/rspec-test
-
+      - store_test_results:
+          path: test_results
 workflows:
   build_and_test:
     jobs:

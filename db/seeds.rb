@@ -21,3 +21,9 @@ x.posts.create(title: "Test Post 2", body: "This is a test post 2", user_id: 2)
 
 y.posts.create(title: "Test Post 3", body: "This is a test post 3", user_id: 1)
 y.posts.create(title: "Test Post 4", body: "This is a test post 4", user_id: 2)
+
+user3 = User.create(username: "User Show Test", email: "usershow@gmail.com", uid: "12345", token: "12345")
+plate3 = Plate.create(plate_number: "ABCD-1234")
+post5 = Post.create(title: "Test Post 5", body: "This is a test post 5", user_id: user3.id)
+comment1 = Comment.create(body: "This is a test comment", user_id: user3.id, post_id: 1)
+user_plate1 = UserPlate.create(user_id: user3.id, plate_id: plate3.id)

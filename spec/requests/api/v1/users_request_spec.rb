@@ -23,14 +23,6 @@ RSpec.describe 'Users API', type: :request do
         expect(user).to have_key(:type)
         expect(user[:type]).to eq('user')
 
-        expect(user).to have_key(:relationships)
-        expect(user[:relationships]).to be_a(Hash)
-
-        expect(user[:relationships]).to have_key(:plates)
-        expect(user[:relationships][:plates]).to be_a(Hash)
-        expect(user[:relationships]).to have_key(:posts)
-        expect(user[:relationships][:posts]).to be_a(Hash)
-
         expect(user).to have_key(:attributes)
         expect(user[:attributes]).to be_a(Hash)
 
@@ -75,9 +67,9 @@ RSpec.describe 'Users API', type: :request do
       expect(user[:attributes][:token]).to eq(user1.token)
 
       expect(user[:attributes][:comments]).to eq([{id: comment1.id, body: comment1.body, post_id: comment1.post_id}])
-
-      expect(user[:relationships][:plates][:data]).to eq([])
-      expect(user[:relationships][:posts][:data]).to eq([{id: post1.id.to_s, type: 'post'}])
+# require 'pry'; binding.pry
+      expect(user[:attributes][:posts]).to eq([{id: post1.id, title: 'testpost1'}])
+      expect(user[:attributes][:plates]).to eq([])
     end
 
     it 'returns a 404 if the User does not exist' do

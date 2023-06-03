@@ -24,9 +24,6 @@ jobs:
           name: Precompile Assets
           command: bundle exec rails assets:precompile
       - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run:
           name: Database setup
           command: bin/rails db:{create,migrate} --trace
       - ruby/rspec-test

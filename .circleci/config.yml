@@ -10,6 +10,10 @@ jobs:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
+      - image: cimg/postgres:14.7
+        environment:
+          POSTGRES_USER: plate_book_be
+          POSTGRES_DB: plate_book_test
     steps:
       - checkout
       - ruby/install-deps
@@ -19,8 +23,15 @@ jobs:
       - run:
           name: Precompile Assets
           command: bundle exec rails assets:precompile
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bin/rails db:{create,migrate} --trace
       - ruby/rspec-test
-
+      - store_test_results:
+          path: test_results
 workflows:
   build_and_test:
     jobs:

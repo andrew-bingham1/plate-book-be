@@ -23,6 +23,10 @@ RSpec.describe "Create Posts" do
         }
       }
 
+      expect(response).to have_http_status(201)
+      json = JSON.parse(response.body, symbolize_names: true)
+      expect(json[:data][:attributes][:title]).to eq("Everyone is on their own journey.")
+
       @user_3.reload
       expect(@plate_1.posts.length).to eq(2)
       expect(@user_3.posts.length).to eq(1)
@@ -47,8 +51,10 @@ RSpec.describe "Create Posts" do
         }
       }
 
-      expect(response).to have_http_status(:success)
-      
+      expect(response).to have_http_status(201)
+      json = JSON.parse(response.body, symbolize_names: true)
+      expect(json[:data][:attributes][:title]).to eq("Everyone is on their own journey.")
+
       @user_2.reload
       expect(@user_2.posts.length).to eq(3)
       expect(Plate.all.count).to eq(3)

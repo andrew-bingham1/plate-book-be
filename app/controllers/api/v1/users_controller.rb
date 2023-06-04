@@ -12,7 +12,7 @@ class Api::V1::UsersController < ApplicationController
   def create
     new_params = JSON.parse(params.to_json, symbolize_names: true)
     user = User.find_or_create_by(email: new_params[:email])
-    user.update(uid: new_params[:uid], token: new_params[:token])
+    user.update(uid: new_params[:uid], token: new_params[:token], username: new_params[:uid])
     render json: UserSerializer.new(user)
   end
 

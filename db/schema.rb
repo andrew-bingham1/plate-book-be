@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_223420) do
     t.string "title"
     t.string "body"
     t.float "lat"
-    t.float "lon"
+    t.float "lng"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "User Plates" do
-  describe "Create" do
+RSpec.describe "User Plates Create" do
+  describe "Happy Path" do
     before do
       test_data_posts
     end
@@ -23,6 +23,33 @@ RSpec.describe "User Plates" do
       @user_1.reload
       expect(@user_1.plates).to eq([@plate_1])
       expect(json[:message]).to eq("UserPlate successfully created")
+    end
+  end
+
+  describe "Sad Path" do
+    before do
+      test_data_posts
+    end
+
+    it "nonexistent user" do
+      post "/api/v1/user_plates", params: {
+        user_id: 98465765768,
+        plate_id: @plate_1.id
+      }
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(400)
+      expect(json[:errors].first).to eq("User must exist")
+    end
+
+    it "nonexistent plate" do
+      post "/api/v1/user_plates", params: {
+        user_id: @user_1.id,
+        plate_id: 32168498465
+      }
+      json = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to have_http_status(400)
+      expect(json[:errors].first).to eq("Plate must exist")
     end
   end
 end

@@ -7,4 +7,8 @@ class Api::V1::UserPlatesController < ApplicationController
       render json: { errors: user_plate.errors.full_messages }, status: 400
     end
   end
+
+  def destroy
+    
+  end
 end

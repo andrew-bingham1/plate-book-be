@@ -49,7 +49,7 @@ group :development, :test do
   gem 'pry'
   gem 'simplecov'
   gem 'shoulda-matchers'
-  gem 'rspec_junit_formatter'
+  gem 'rspec_junit_formatter', require: false
 end
 
 group :development do

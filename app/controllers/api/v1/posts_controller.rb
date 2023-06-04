@@ -11,8 +11,8 @@ class Api::V1::PostsController < ApplicationController
       post = Post.create(title: new_params[:title], body: new_params[:body], user_id: new_params[:user_id], lat: new_params[:lat], lng: new_params[:lng])
       plate = Plate.find_or_create_by(plate_number: new_params[:plate_number])
       plate.plate_posts.create(post_id: post.id, photo_url: new_params[:photo_url])
-      render json: PostSerializer.new(post), status: :created
-    else ActiveRecord::RecordNotFound
+      render json: PostSerializer.new(post), status: 201
+    else 
       render json: {errors: "User not found"}, status: 422
     end
   end

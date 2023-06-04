@@ -22,9 +22,7 @@ RSpec.describe UserSerializer, type: :serializer do
    expect(user[:data][:attributes]).to have_key(:uid)
    expect(user[:data][:attributes]).to have_key(:token)
    expect(user[:data][:attributes]).to have_key(:comments)
-   
-   expect(user[:data]).to have_key(:relationships)
-   expect(user[:data][:relationships]).to have_key(:plates)
-   expect(user[:data][:relationships]).to have_key(:posts)
+   expect(user[:data][:attributes]).to have_key(:plates)
+   expect(user[:data][:attributes]).to have_key(:posts)
   end
 end

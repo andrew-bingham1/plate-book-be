@@ -19,7 +19,7 @@ RSpec.describe "Create Posts" do
           title: "Everyone is on their own journey.",
           body: "That said, the guy who drives this truck is an asshole.",
           photo_url: "http://fakeurlforplatebook.com/fakephoto",
-          id: @user_3.id
+          user_id: @user_3.id
         }
       }
 
@@ -47,7 +47,7 @@ RSpec.describe "Create Posts" do
           title: "Everyone is on their own journey.",
           body: "That said, the guy who drives this truck is an asshole.",
           photo_url: "http://fakeurlforplatebook.com/fakephoto",
-          id: @user_2.id
+          user_id: @user_2.id
         }
       }
 

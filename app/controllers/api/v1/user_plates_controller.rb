@@ -9,6 +9,12 @@ class Api::V1::UserPlatesController < ApplicationController
   end
 
   def destroy
-    
+    user_plate = UserPlate.find_by(user_id: params[:user_id], plate_id: params[:id])
+    if user_plate
+      user_plate.destroy
+      render json: {}, status: 204
+    else
+      render json: { errors: "Not found" }, status: 404
+    end
   end
 end

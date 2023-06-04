@@ -16,7 +16,6 @@ ENV RAILS_ENV="production" \
 RUN gem update --system --no-document && \
     gem install -N bundler
 
-
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
@@ -50,7 +49,10 @@ COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
 # Run and own only the runtime files as a non-root user for security
-RUN useradd rails --create-home --shell /bin/bash && \
+ARG UID=1000 \
+    GID=1000
+RUN groupadd -f -g $GID rails && \
+    useradd -u $UID -g $GID rails --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
 USER rails:rails
 
@@ -62,5 +64,5 @@ ENV RAILS_LOG_TO_STDOUT="1" \
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
-EXPOSE 5000
+EXPOSE 5001:5001
 CMD ["./bin/rails", "server"]

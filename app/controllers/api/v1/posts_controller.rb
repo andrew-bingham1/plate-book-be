@@ -13,7 +13,7 @@ class Api::V1::PostsController < ApplicationController
       plate = Plate.find_or_create_by(plate_number: new_params[:plate_number])
       plate.plate_posts.create(post_id: post.id, photo_url: new_params[:photo_url])
       render json: PostSerializer.new(post), status: 201
-    else ActiveRecord::RecordNotFound
+    else 
       render json: {errors: "User not found"}, status: 422
     end
   end

@@ -16,6 +16,7 @@ ENV RAILS_ENV="production" \
 RUN gem update --system --no-document && \
     gem install -N bundler
 
+
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
@@ -64,5 +65,5 @@ ENV RAILS_LOG_TO_STDOUT="1" \
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
-EXPOSE 5001:5001
+EXPOSE 5001
 CMD ["./bin/rails", "server"]

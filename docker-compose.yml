@@ -9,8 +9,7 @@ services:
     ports:
       - "5001:5001"
     environment:
-      DATABASE_URL: postgres://root:password@postgres-db/
-    env_file: config/application.yml
+      - DATABASE_URL=postgres://root:password@postgres-db/
     depends_on:
       postgres-db:
         condition: service_healthy
@@ -21,7 +20,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - ./tmp/db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     healthcheck:
@@ -29,6 +28,3 @@ services:
       interval: 2s
       timeout: 5s
       retries: 30
-
-volumes:
-  postgres-data:

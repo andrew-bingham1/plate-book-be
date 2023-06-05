@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: plate_book_be_production
-  username: plate_book_be
-  password: <%= ENV["PLATE_BOOK_BE_DATABASE_PASSWORD"] %>
+  username: root
+  password: password

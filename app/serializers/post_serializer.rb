@@ -12,6 +12,12 @@ class PostSerializer
       {photo_url: plate_post.photo_url}
     end
   end
+
+  attributes :user do |post|
+    {
+      username: post.user.username
+    }
+  end
   
   attribute :comments do |post|
     post.comments.map do |comment|
@@ -19,7 +25,8 @@ class PostSerializer
         id: comment.id,
         body: comment.body,
         user_id: comment.user_id,
-        post_id: comment.post_id
+        post_id: comment.post_id,
+        username: comment.user.username
       }
     end
   end

@@ -13,10 +13,8 @@ class PostSerializer
     end
   end
 
-  attributes :user do |post|
-    {
-      username: post.user.username
-    }
+  attributes :username do |post|
+     post.user.username
   end
   
   attribute :comments do |post|
@@ -26,12 +24,21 @@ class PostSerializer
         body: comment.body,
         user_id: comment.user_id,
         post_id: comment.post_id,
-        username: comment.user.username
+        username: comment.user.username,
+        created_at: comment.created_at.strftime("%-I:%M %p %m/%d/%Y")
       }
     end
   end
 
   attribute :parent_plates do |object|
-    object.plates
+    object.plates.map do |plate|
+      {
+        plate_number: plate.plate_number
+      }
+    end
+  end
+
+  attribute :formatted_created_at do |post|
+    post.created_at.strftime("%-I:%M %p %m/%d/%Y")
   end
 end

@@ -1,6 +1,7 @@
 class Api::V1::CommentsController < ApplicationController
   def create
-    comment = Comment.new(body: params[:params][:body], post_id: params[:params][:post_id], user_id: params[:params][:user_id])
+    comment = Comment.new(comment_params)
+    require 'pry'; binding.pry
     if comment.save
       render json: CommentSerializer.new(comment)
     else
@@ -11,6 +12,6 @@ class Api::V1::CommentsController < ApplicationController
   private
 
   def comment_params
-    params.permit(:body, :post_id, :user_id)
+    params.require(:params).permit(:body, :post_id, :user_id)
   end
 end

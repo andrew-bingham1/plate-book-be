@@ -5,7 +5,7 @@ RSpec.describe "Hot Plates" do
     test_data_hot
   end
   it "returns top 5 plates by activity" do
-    get "/api/v1/plates"
+    get "/api/v1/search/plates"
     require 'pry'; binding.pry
   end
 end

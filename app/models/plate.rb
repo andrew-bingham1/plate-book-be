@@ -15,4 +15,11 @@ class Plate < ApplicationRecord
     self.plate_number = self.plate_number.gsub(" ", "").upcase if self.plate_number
   end
 
+  def self.hot
+    Plate.select('plates.*, COUNT(DISTINCT posts.id) + COUNT(DISTINCT comments.id) AS total_count')
+      .joins(:posts).joins('LEFT JOIN comments ON posts.id = comments.post_id')
+      .group('plates.id')
+      .order('total_count DESC').limit(5)
+  end
+
 end

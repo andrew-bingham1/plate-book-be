@@ -8,4 +8,8 @@ class Api::V1::SearchController < ApplicationController
       render json: {errors: "That category does not exist."}, status: 404
     end
   end
+
+  def hot_plates
+    render json: PlateSerializer.new(Plate.hot)
+  end
 end

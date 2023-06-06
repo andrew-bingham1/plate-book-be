@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      get '/userplate', to: 'user_plates#show'
       resources :locations, only: [:index]
       resources :user_plates, only: [:create, :destroy]
       resources :users, only: [:index, :show, :create]

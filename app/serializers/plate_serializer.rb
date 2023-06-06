@@ -9,7 +9,7 @@ class PlateSerializer
       {
         id: post.id,
         title: post.title,
-        created_at: post.created_at.strftime("%-I:%M %p %m/%d/%Y"),
+        created_at: post.created_at.localtime.strftime("%-I:%M %p %m/%d/%Y"),
         username: post.user.username,
         user_id: post.user_id,
         comment_count: post.comments.count

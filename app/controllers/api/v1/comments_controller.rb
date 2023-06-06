@@ -1,7 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
   def create
     comment = Comment.new(comment_params)
-    require 'pry'; binding.pry
     if comment.save
       render json: CommentSerializer.new(comment)
     else

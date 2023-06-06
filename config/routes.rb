@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         resources :comments, only: [:create, :update, :destroy]
       end
       resources :search, only: [:index]
+      get "/search/hot_plates", to: "search#hot_plates"
     end
   end
 end

@@ -1,4 +1,5 @@
 class Api::V1::UserPlatesController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   def show
     user_plate = UserPlate.find_by(user_id: params[:params][:user_id], plate_id: params[:params][:plate_id])
     if user_plate
@@ -30,5 +31,10 @@ class Api::V1::UserPlatesController < ApplicationController
     else
       render json: { errors: "Not found" }, status: 404
     end
+  end
+
+  private
+  def record_not_found
+    render json: { errors: "Not found" }, status: 404
   end
 end

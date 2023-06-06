@@ -12,8 +12,10 @@ RSpec.describe "User Plates Create" do
       expect(@user_1.plates).to eq([])
 
       post "/api/v1/user_plates", params: {
+        params: {
         user_id: @user_1.id,
         plate_id: @plate_1.id
+        }
       }
       json = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(201)
@@ -33,8 +35,9 @@ RSpec.describe "User Plates Create" do
 
     it "nonexistent user" do
       post "/api/v1/user_plates", params: {
-        user_id: 98465765768,
-        plate_id: @plate_1.id
+        params:{
+          user_id: 98465765768,
+          plate_id: @plate_1.id}
       }
       json = JSON.parse(response.body, symbolize_names: true)
 
@@ -44,8 +47,10 @@ RSpec.describe "User Plates Create" do
 
     it "nonexistent plate" do
       post "/api/v1/user_plates", params: {
-        user_id: @user_1.id,
-        plate_id: 32168498465
+        params:{
+          user_id: @user_1.id,
+          plate_id: 32168498465
+        }
       }
       json = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(400)

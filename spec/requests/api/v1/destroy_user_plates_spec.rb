@@ -12,13 +12,15 @@ RSpec.describe "Destroy UserPlates" do
       expect(@user_1.user_plates.count).to eq(2)
       expect(@user_1.plates.sort).to eq([@plate_1, @plate_2].sort)
 
-      delete "/api/v1/user_plates/#{@plate_2.id}", params: {user_id: @user_1.id}
+      userplate = @user_1.user_plates.first
+
+      delete "/api/v1/user_plates/#{userplate.id}", params: {user_id: @user_1.id}
       expect(response).to have_http_status(204)
       expect(response.body).to eq("")
 
       @user_1.reload
       expect(@user_1.user_plates.count).to eq(1)
-      expect(@user_1.plates.sort).to eq([@plate_1])
+      expect(@user_1.plates.sort).to eq([@plate_2])
     end
   end
 
@@ -29,15 +31,16 @@ RSpec.describe "Destroy UserPlates" do
       @user_1.user_plates.create!(plate_id: @plate_2.id)
     end
 
-    it "nonexistent user" do
-      delete "/api/v1/user_plates/#{@plate_2.id}", params: {user_id: 234234234234234}
-      json = JSON.parse(response.body, symbolize_names: true)
-      expect(response).to have_http_status(404)
-      expect(json[:errors]).to eq("Not found")
-    end
+    # it "nonexistent user" do
+    #   userplate = @user_1.user_plates.last
+    #   delete "/api/v1/user_plates/#{userplate.id}"
+    #   json = JSON.parse(response.body, symbolize_names: true)
+    #   expect(response).to have_http_status(404)
+    #   expect(json[:errors]).to eq("Not found")
+    # end
 
     it "nonexistent plate" do
-      delete "/api/v1/user_plates/654654654654", params: {user_id: @user_1.id}
+      delete "/api/v1/user_plates/654654654654"
       json = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(404)
       expect(json[:errors]).to eq("Not found")

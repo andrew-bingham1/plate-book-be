@@ -1,6 +1,14 @@
 version: "3.8"
 services:
-  web:
+  web-fe:
+    container_name: plate-book-fe
+    build:
+      context: ../plate-book-fe
+    ports:
+      - "3000:3000"
+
+  web-be:
+    container_name: plate-book-be
     build:
       context: .
       args:
@@ -16,11 +24,12 @@ services:
 
   postgres-db:
     image: postgres
+    container_name: plate-book-db
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: password
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     healthcheck:
@@ -28,3 +37,6 @@ services:
       interval: 2s
       timeout: 5s
       retries: 30
+
+volumes:
+  pgdata:

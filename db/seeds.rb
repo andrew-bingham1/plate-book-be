@@ -20,11 +20,11 @@ plate1 = Plate.create!(plate_number: "ABC-1234")
 plate2 = Plate.create!(plate_number: "MKV-1234")
 plate3 = Plate.create!(plate_number: "ABCD-1234")
 
-post1 = user1.posts.create!(title: "Test Post", body: "This is a test post")
-post2 = user1.posts.create!(title: "Test Post 2", body: "This is a test post 2")
-post3 = user2.posts.create!(title: "Test Post 3", body: "This is a test post 3")
-post4 = user2.posts.create!(title: "Test Post 4", body: "This is a test post 4")
-post5 = user3.posts.create!(title: "Test Post 5", body: "This is a test post 5")
+post1 = user1.posts.create!(title: "Test Post", body: "This is a test post", lat: 39.7392, lng: 104.9903)
+post2 = user1.posts.create!(title: "Test Post 2", body: "This is a test post 2", lat: 47.6062, lng: 122.3321)
+post3 = user2.posts.create!(title: "Test Post 3", body: "This is a test post 3", lat: 37.7749, lng: 122.4194)
+post4 = user2.posts.create!(title: "Test Post 4", body: "This is a test post 4", lat: 40.7128, lng: 74.006)
+post5 = user3.posts.create!(title: "Test Post 5", body: "This is a test post 5", lat: 32.7767, lng: 96.7970)
 
 comment1 = user3.comments.create!(body: "This is a test comment", user_id: user3.id, post_id: 1)
 

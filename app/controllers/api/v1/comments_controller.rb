@@ -1,6 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
   def create
-    comment = Comment.new(comment_params)
+    comment = Comment.new(body: params[:params][:body], post_id: params[:params][:post_id], user_id: params[:params][:user_id])
     if comment.save
       render json: CommentSerializer.new(comment)
     else

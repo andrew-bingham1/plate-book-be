@@ -29,3 +29,9 @@ post5 = user3.posts.create!(title: "Test Post 5", body: "This is a test post 5",
 comment1 = user3.comments.create!(body: "This is a test comment", user_id: user3.id, post_id: 1)
 
 user_plate1 = UserPlate.create!(user_id: user3.id, plate_id: plate3.id)
+
+post_plate1 = PlatePost.create!(post_id: post1.id, plate_id: plate1.id)
+post_plate2 = PlatePost.create!(post_id: post2.id, plate_id: plate1.id)
+post_plate3 = PlatePost.create!(post_id: post3.id, plate_id: plate2.id)
+post_plate4 = PlatePost.create!(post_id: post4.id, plate_id: plate2.id)
+post_plate5 = PlatePost.create!(post_id: post5.id, plate_id: plate3.id)

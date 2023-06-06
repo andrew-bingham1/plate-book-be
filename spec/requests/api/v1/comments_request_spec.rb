@@ -10,7 +10,7 @@ RSpec.describe 'Comments API', type: :request do
       post1 = Post.create!(user_id: user1.id, title: 'testpost1', body: 'testbody1')
       plate_post1 = PlatePost.create!(plate_id: plate1.id, post_id: post1.id)
       
-      post "/api/v1/posts/#{post1.id}/comments", params: {body: 'This is a test comment!', user_id: user1.id, post_id: post1.id}
+      post "/api/v1/posts/#{post1.id}/comments", params: { params: {body: 'This is a test comment!', user_id: user1.id, post_id: post1.id}}
       
       expect(response).to be_successful
       

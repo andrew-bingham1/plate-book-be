@@ -80,5 +80,27 @@ RSpec.describe 'Users API', type: :request do
       expect(response.body).to eq('{"error":"User not found"}')
     end
   end
+
+  describe "Create" do
+    it "happy path" do
+      user_params = {
+        :email => "test@gmail.com",
+        :token => "sdfsdf",
+        :uid => "1234523423",
+      }
+
+      post "/api/v1/users", params: user_params
+      json = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to be_successful
+      expect(json[:data][:attributes][:email]).to eq(user_params[:email])
+      expect(json[:data][:attributes][:token]).to eq(user_params[:token])
+      expect(json[:data][:attributes][:uid]).to eq(user_params[:uid])
+      expect(json[:data][:attributes][:username]).to eq(user_params[:uid])
+    end
+
+    it "sad path" do
+
+    end
+  end
 end
 

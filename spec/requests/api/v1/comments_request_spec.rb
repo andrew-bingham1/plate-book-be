@@ -26,6 +26,22 @@ RSpec.describe 'Comments API', type: :request do
       expect(comment[:attributes]).to have_key(:post_id)
       expect(comment[:attributes][:post_id]).to eq(post1.id)
     end
+
+    it "sad path, fails to create empty comment" do
+      plate1 = Plate.create!(plate_number: 'testplate1')
+      user1 = User.create!(username: 'testuser1', email: 'joebob@gmail.com', uid: '12345', token: '12345')
+      user_plate1 = UserPlate.create!(user_id: user1.id, plate_id: plate1.id)
+
+      post1 = Post.create!(user_id: user1.id, title: 'testpost1', body: 'testbody1')
+      plate_post1 = PlatePost.create!(plate_id: plate1.id, post_id: post1.id)
+      
+      post "/api/v1/posts/#{post1.id}/comments", params: { params: {body: '', user_id: user1.id, post_id: post1.id}}
+
+      error = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      expect(error[:errors]).to eq(["Body can't be blank"])
+    end
       
   end
 end

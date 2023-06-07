@@ -31,13 +31,12 @@ RSpec.describe "Destroy UserPlates" do
       @user_1.user_plates.create!(plate_id: @plate_2.id)
     end
 
-    # it "nonexistent user" do
-    #   userplate = @user_1.user_plates.last
-    #   delete "/api/v1/user_plates/#{userplate.id}"
-    #   json = JSON.parse(response.body, symbolize_names: true)
-    #   expect(response).to have_http_status(404)
-    #   expect(json[:errors]).to eq("Not found")
-    # end
+    it "nonexistent plate" do
+      delete "/api/v1/user_plates/20394290"
+      json = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to have_http_status(404)
+      expect(json[:errors]).to eq("Not found")
+    end
 
     it "nonexistent plate" do
       delete "/api/v1/user_plates/654654654654"

@@ -56,5 +56,20 @@ RSpec.describe "User Plates Create" do
       expect(response).to have_http_status(400)
       expect(json[:errors].first).to eq("Plate must exist")
     end
+
+    it "already exists" do
+      @user1 = User.create!(username: 'testuser1', email: 'joebob@gmail.com', uid: '12345', token: '12345')
+      @plate1 = Plate.create!(plate_number: "EEE 111")
+      @user_plate1 = UserPlate.create!(user_id: @user1.id, plate_id: @plate1.id)
+      post "/api/v1/user_plates", params: {
+        params:{
+          user_id: @user1.id,
+          plate_id: @plate1.id
+        }
+      }
+      json = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to have_http_status(200)
+      expect(json[:message]).to eq("Already Following")
+    end
   end
 end

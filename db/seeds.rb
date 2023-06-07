@@ -102,3 +102,8 @@
   @comment_9 = @post_26.comments.create!(body: "Comment 9", user_id: @user_2.id)
   @comment_10 = @post_27.comments.create!(body: "Comment 10", user_id: @user_2.id)
   @comment_11 = @post_28.comments.create!(body: "Comment 11", user_id: @user_2.id)
+
+  userplate_1 = UserPlate.create!(user_id: @user_1.id, plate_id: @plate_1.id)
+  userplate_2 = UserPlate.create!(user_id: @user_1.id, plate_id: @plate_2.id)
+  userplate_3 = UserPlate.create!(user_id: @user_1.id, plate_id: @plate_3.id)
+  userplate_4 = UserPlate.create!(user_id: @user_1.id, plate_id: @plate_4.id)

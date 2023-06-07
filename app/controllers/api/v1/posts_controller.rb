@@ -23,10 +23,6 @@ class Api::V1::PostsController < ApplicationController
 
   private
 
-  def posts_params
-    params.permit(:title, :body, :plate_number, :photo_url)
-  end
-
   def record_not_found
     render json: {"error":"Post not found"}, status: :not_found
   end

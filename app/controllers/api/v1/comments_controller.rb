@@ -4,7 +4,7 @@ class Api::V1::CommentsController < ApplicationController
     if comment.save
       render json: CommentSerializer.new(comment)
     else
-      render json: {errors: comment.errors.full_messages}
+      render json: {errors: comment.errors.full_messages}, status: 400
     end
   end
 

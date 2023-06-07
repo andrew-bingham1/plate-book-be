@@ -28,8 +28,6 @@ class Api::V1::UserPlatesController < ApplicationController
     if user_plate
       user_plate.destroy
       render json: {}, status: 204
-    else
-      render json: { errors: "Not found" }, status: 404
     end
   end
 

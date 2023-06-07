@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: plate_book_be_production
-  username: root
-  password: password
+  database: <%= ENV.fetch("DATABASE_NAME")
+  username: <%= ENV.fetch("DATABASE_USERNAME")
+  password: <%= ENV.fetch("DATABASE_PASSWORD")

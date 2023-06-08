@@ -39,6 +39,6 @@ class PostSerializer
   end
 
   attribute :formatted_created_at do |post|
-    post.created_at.localtime.strftime("%-I:%M %p %m/%d/%Y")
+    post.created_at.strftime("%-I:%M %p %m/%d/%Y")
   end
 end

@@ -8,6 +8,15 @@ class Api::V1::CommentsController < ApplicationController
     end
   end
 
+  def update
+    comment = Comment.find(params[:comment_id])
+    if comment.update(body: params[:body])
+      render json: {}, status: 204
+    else
+      render json: {errors: "Failed to update comment"}, status: 400
+    end
+  end
+
   def options
     headers['Allow'] = 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
     render json: { status: "OK" }, status: 200

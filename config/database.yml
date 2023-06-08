@@ -79,8 +79,11 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+
+# username and password are required to automatically seed the database
+# when the server starts in the production environment
 production:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_NAME")
-  username: <%= ENV.fetch("DATABASE_USERNAME")
-  password: <%= ENV.fetch("DATABASE_PASSWORD")
+  database: plate_book_be_production
+  username: root
+  password: password

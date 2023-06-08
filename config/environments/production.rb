@@ -4,6 +4,9 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.force_ssl = false
 
+  # Removes HTTP parse error from health check requests while deployed
+  config.ssl_options = { redirect: { exclude: -> request { request.path =~ /healthcheck/ } } }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

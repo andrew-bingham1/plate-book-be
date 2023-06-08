@@ -17,7 +17,8 @@ RSpec.describe "SearchController#index" do
     it "search by name" do
       get "/api/v1/search", params: {
         category: "posts",
-        query: "pony"
+        query: "pony",
+        emotion: "None"
       }
       json = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(200)
@@ -25,12 +26,27 @@ RSpec.describe "SearchController#index" do
 
       get "/api/v1/search", params: {
         category: "posts",
-        query: "dog"
+        query: "dog",
+        emotion: "None"
       }
       json = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(200)
       expect(json[:data].first[:id].to_i).to eq(@post_2.id)
     end
+
+    it "can search by emotion" do
+      @post_9 = @plate_2.posts.create!(title: "Part 5: The pony was a phony.", body: "This is a test post 4", user_id: @user_2.id, selected_tags: "Anger")
+      get "/api/v1/search", params: {
+        category: "posts",
+        query: "pony",
+        emotion: "Anger"
+      }
+      json = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to have_http_status(200)
+      expect(json[:data].first[:id].to_i).to eq(@post_9.id)
+    end
+
+
   end
 
   describe "sad paths" do

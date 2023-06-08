@@ -9,4 +9,8 @@ class Post < ApplicationRecord
   def self.search(query)
     Post.where("title ILIKE ?", "%#{query}%")
   end
+
+  def self.search_with_emotion(params)
+    Post.where("title ILIKE ?", "%#{params[:query]}%").where("selected_tags ILIKE ?", "%#{params[:emotion]}%")
+  end
 end

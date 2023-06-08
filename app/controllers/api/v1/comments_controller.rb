@@ -1,4 +1,5 @@
 class Api::V1::CommentsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   def create
     comment = Comment.new(comment_params)
     if comment.save
@@ -11,7 +12,7 @@ class Api::V1::CommentsController < ApplicationController
   def update
     comment = Comment.find(params[:comment_id])
     if comment.update(body: params[:body])
-      render json: {}, status: 204
+      render json: CommentSerializer.new(comment), status: 200
     else
       render json: {errors: "Failed to update comment"}, status: 400
     end
@@ -23,6 +24,9 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   private
+  def record_not_found
+    render json: { errors: "Not found" }, status: 404
+  end
 
   def comment_params
     params.require(:params).permit(:body, :post_id, :user_id)

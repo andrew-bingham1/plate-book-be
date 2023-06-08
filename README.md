@@ -19,6 +19,7 @@ Users can view their posts, comments, and followed plates on their dashboard.\
 Users can search for specific plates or posts using the search box.
 
 ## Routes
+https://app.swaggerhub.com/apis/ANDREWGBINGHAM/PlateBook_BE_Endpoints/1.0#/
 
 ## Built Using
 * Rails 7.0.5

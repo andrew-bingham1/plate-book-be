@@ -15,8 +15,8 @@ RSpec.describe "Destroy UserPlates" do
       userplate = @user_1.user_plates.first
 
       delete "/api/v1/user_plates/#{userplate.id}", params: {user_id: @user_1.id}
-      expect(response).to have_http_status(204)
-      expect(response.body).to eq("")
+      expect(response).to have_http_status(200)
+     
 
       @user_1.reload
       expect(@user_1.user_plates.count).to eq(1)

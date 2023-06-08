@@ -3,6 +3,7 @@ class PostSerializer
   attributes :id,
              :title,
              :body,
+             :selected_tags,
              :user_id,
              :created_at,
              :updated_at
@@ -25,7 +26,7 @@ class PostSerializer
         user_id: comment.user_id,
         post_id: comment.post_id,
         username: comment.user.username,
-        created_at: comment.created_at.localtime.strftime("%-I:%M %p %m/%d/%Y")
+        created_at: comment.created_at.strftime("%-I:%M %p %m/%d/%Y")
       }
     end
   end
@@ -39,6 +40,6 @@ class PostSerializer
   end
 
   attribute :formatted_created_at do |post|
-    post.created_at.localtime.strftime("%-I:%M %p %m/%d/%Y")
+    post.created_at.strftime("%-I:%M %p %m/%d/%Y")
   end
 end

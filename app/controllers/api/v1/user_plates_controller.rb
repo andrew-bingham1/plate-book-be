@@ -1,5 +1,6 @@
 class Api::V1::UserPlatesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  
   def show
     user_plate = UserPlate.find_by(user_id: params[:params][:user_id], plate_id: params[:params][:plate_id])
     if user_plate
@@ -27,7 +28,7 @@ class Api::V1::UserPlatesController < ApplicationController
 
     if user_plate
       user_plate.destroy
-      render json: {}, status: 204
+      render json: { message: "UserPlate deleted"}, status: 200
     end
   end
 

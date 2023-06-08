@@ -8,7 +8,7 @@ class Api::V1::PostsController < ApplicationController
   def create
     new_params = JSON.parse(params[:params].to_json, symbolize_names: true)
     if user = User.find_by_id(new_params[:user_id])
-      post = Post.create(title: new_params[:title], body: new_params[:body], user_id: new_params[:user_id], lat: new_params[:lat], lng: new_params[:lng])
+      post = Post.create(title: new_params[:title], body: new_params[:body], user_id: new_params[:user_id], lat: new_params[:lat], lng: new_params[:lng], selected_tags: new_params[:selected_tags])
       plate = Plate.find_or_create_by(plate_number: new_params[:plate_number])
       plate.plate_posts.create(post_id: post.id, photo_url: new_params[:photo_url])
       render json: PostSerializer.new(post), status: 201

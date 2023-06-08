@@ -12,4 +12,10 @@ class Api::V1::SearchController < ApplicationController
   def hot_plates
     render json: PlateSerializer.new(Plate.hot)
   end
+
+  def options
+    headers['Allow'] = 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
+    render json: { status: "OK" }, status: 200
+  end
+
 end

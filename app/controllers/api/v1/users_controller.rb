@@ -38,6 +38,6 @@ class Api::V1::UsersController < ApplicationController
   private 
 
   def record_not_found
-    render json: {"error":"User not found"}, status: 404
+    render json: { errors: "User not found"}, status: 404
   end
 end

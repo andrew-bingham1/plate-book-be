@@ -27,10 +27,10 @@ RSpec.describe "Update username" do
     end
 
     it "nonexistent user" do
-      put "/api/v1/users/984657684654", params: {id: @user_1.id, username: "Flibbety Gibbet"}
+      put "/api/v1/users/864684684684", params: {id: 864684684684, username: "Flibbety Gibbet"}
       json = JSON.parse(response.body, symbolize_names: true)
       expect(response).to have_http_status(404)
-      expect(json[:error]).to eq("User not found")
+      expect(json[:errors]).to eq("User not found")
     end
 
     it "username already exists" do

@@ -77,7 +77,7 @@ RSpec.describe 'Users API', type: :request do
 
       expect(response).to_not be_successful
       expect(response.status).to eq(404)
-      expect(response.body).to eq('{"error":"User not found"}')
+      expect(response.body).to eq('{"errors":"User not found"}')
     end
   end
 

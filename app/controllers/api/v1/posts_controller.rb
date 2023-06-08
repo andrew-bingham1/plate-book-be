@@ -21,6 +21,11 @@ class Api::V1::PostsController < ApplicationController
     render json: PostSerializer.new(Post.find(params[:id]))
   end
 
+  def options
+    headers['Allow'] = 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
+    render json: { status: "OK" }, status: 200
+  end
+
   private
 
   def record_not_found

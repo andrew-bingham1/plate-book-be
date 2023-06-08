@@ -32,6 +32,12 @@ class Api::V1::UserPlatesController < ApplicationController
     end
   end
 
+  def options
+    headers['Allow'] = 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
+    render json: { status: "OK" }, status: 200
+  end
+
+
   private
   def record_not_found
     render json: { errors: "Not found" }, status: 404

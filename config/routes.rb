@@ -24,7 +24,7 @@ Rails.application.routes.draw do
         match '/posts/:id', to: 'posts#options', via: :options
 
       resources :posts, only: [:show] do
-        resources :comments, only: [:create, :update]
+        resources :comments, only: [:create, :update, :show]
           match '/comments', to: 'comments#options', via: :options
           match '/comments/:id', to: 'comments#options', via: :options
       end

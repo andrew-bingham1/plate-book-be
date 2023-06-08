@@ -3,6 +3,7 @@ class PostSerializer
   attributes :id,
              :title,
              :body,
+             :selected_tags,
              :user_id,
              :created_at,
              :updated_at

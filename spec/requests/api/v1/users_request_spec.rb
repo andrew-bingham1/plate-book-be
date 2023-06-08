@@ -67,7 +67,7 @@ RSpec.describe 'Users API', type: :request do
       expect(user[:attributes][:token]).to eq(user1.token)
 
       expect(user[:attributes][:comments]).to eq([{id: comment1.id, body: comment1.body, post_id: comment1.post_id}])
-# require 'pry'; binding.pry
+
       expect(user[:attributes][:posts]).to eq([{id: post1.id, title: 'testpost1'}])
       expect(user[:attributes][:plates]).to eq([])
     end
@@ -77,7 +77,7 @@ RSpec.describe 'Users API', type: :request do
 
       expect(response).to_not be_successful
       expect(response.status).to eq(404)
-      expect(response.body).to eq('{"error":"User not found"}')
+      expect(response.body).to eq('{"errors":"User not found"}')
     end
   end
 

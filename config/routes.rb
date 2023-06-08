@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         match '/user_plates', to: 'user_plates#options', via: :options
         match '/user_plates/:id', to: 'user_plates#options', via: :options
 
-      resources :users, only: [:index, :show, :create]
+      resources :users, only: [:index, :show, :create, :update]
         match '/users', to: 'users#options', via: :options
         match '/users/:id', to: 'users#options', via: :options
 

@@ -21,6 +21,20 @@ class Api::V1::UsersController < ApplicationController
     render json: { status: "OK" }, status: 200
   end
 
+  def update
+    user = User.find(params[:id])
+    existing_user = User.find_by(username: params[:username])
+    if !existing_user || existing_user == user
+      if user.update(username: params[:username])
+        render json: UserSerializer.new(user), status: 200
+      else
+        render json: {errors: "Something went wrong."}, status: 400
+      end 
+    else
+      render json: {errors: "Username already taken"}, status: 422
+    end 
+  end
+
   private 
 
   def record_not_found

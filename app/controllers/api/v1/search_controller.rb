@@ -1,6 +1,9 @@
 class Api::V1::SearchController < ApplicationController
   def index
-    if params[:category] == "posts"
+
+    if params[:category] == "posts" && params[:emotion] != "None"
+      render json: PostSerializer.new(Post.search_with_emotion(params)), status: 200
+    elsif params[:category] == "posts"
       render json: PostSerializer.new(Post.search(params[:query])), status: 200
     elsif params[:category] == "plates"
       render json: PlateSerializer.new(Plate.search(params[:query])), status: 200

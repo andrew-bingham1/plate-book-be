@@ -8,6 +8,11 @@ class Api::V1::CommentsController < ApplicationController
     end
   end
 
+  def options
+    headers['Allow'] = 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
+    render json: { status: "OK" }, status: 200
+  end
+
   private
 
   def comment_params

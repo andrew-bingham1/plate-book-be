@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :plates, only: [:index, :show]
       resources :posts, only: [:index, :create]
       resources :posts, only: [:show] do
-        resources :comments, only: [:create, :update, :destroy]
+        resources :comments, only: [:create, :update]
       end
       resources :search, only: [:index]
       get "/search/hot_plates", to: "search#hot_plates"

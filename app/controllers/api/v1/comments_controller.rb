@@ -8,6 +8,11 @@ class Api::V1::CommentsController < ApplicationController
     end
   end
 
+  def update
+    Comment.find(params[:comment_id]).update(body: params[:body])
+    require 'pry'; binding.pry
+  end
+
   private
 
   def comment_params

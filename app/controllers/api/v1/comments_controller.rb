@@ -9,17 +9,12 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def update
-    if params[:comment_id]
-      comment = Comment.find(params[:comment_id])
-      if comment.update(body: params[:body])
-        render json: {}, status: 204
-      else
-        render json: {errors: "Failed to update comment"}, status: 400
-      end
+    comment = Comment.find(params[:comment_id])
+    if comment.update(body: params[:body])
+      render json: {}, status: 204
     else
-      render json: {errors: "Missing comment id"}, status: 404
+      render json: {errors: "Failed to update comment"}, status: 400
     end
-
   end
 
   private

@@ -10,7 +10,6 @@ class Api::V1::CommentsController < ApplicationController
 
   def update
     Comment.find(params[:comment_id]).update(body: params[:body])
-    require 'pry'; binding.pry
   end
 
   private

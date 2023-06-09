@@ -18,8 +18,14 @@ Users can follow plates.\
 Users can view their posts, comments, and followed plates on their dashboard.\
 Users can search for specific plates or posts using the search box.
 
-## Routes
+## Route Documentation 
 https://app.swaggerhub.com/apis/ANDREWGBINGHAM/PlateBook_BE_Endpoints/1.0#/
+
+## Schema
+![Screenshot 2023-06-08 at 8 03 21 PM](https://github.com/andrew-bingham1/plate-book-be/assets/119075417/7c02a1d5-859c-4e76-8941-086ca3c23adf)
+
+## Front End Repo
+https://github.com/DysonBreakstone/plate-book-fe
 
 ## Built Using
 * Rails 7.0.5

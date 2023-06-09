@@ -7,16 +7,16 @@ Platebook is a license plate based social media website where anonymous users ca
 Platebook is a social media platform that revolves around license plates.
 
 Users must log in using Google OAuth to create new posts or comments.\
-Visitors are free to peruse the site.\
-\
-Users can create a post and attach it to a new license plate or attach the post directly to an existing license plate.\
-When creating a post, users can also attach a photo or provide the location of the incident the post is referring to.\
-If a photo is provided, the photo will be displayed on the post's show page.\
-If a location is provided, a marker that links to the posts's show page will be placed on the map in the landing page at the provided location.\
-Users can leave comments on posts.\
-Users can follow plates.\
-Users can view their posts, comments, and followed plates on their dashboard.\
-Users can search for specific plates or posts using the search box.
+Visitors are free to peruse the site.
+
+* Users can create a post and attach it to a new license plate or attach the post directly to an existing license plate.
+* When creating a post, users can also attach a photo or provide the location of the incident the post is referring to.
+* If a photo is provided, the photo will be displayed on the post's show page.
+* If a location is provided, a marker that links to the posts's show page will be placed on the map in the landing page at the provided location.
+* Users can leave comments on posts.
+* Users can follow plates.
+* Users can view their posts, comments, and followed plates on their dashboard.
+* Users can search for specific plates or posts using the search box.
 
 ## Route Documentation 
 https://app.swaggerhub.com/apis/ANDREWGBINGHAM/PlateBook_BE_Endpoints/1.0#/

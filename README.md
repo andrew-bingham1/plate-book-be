@@ -70,6 +70,8 @@ Our first deployment was done on Render, with 2 separate containers for the fron
 
 ### AWS Deployment
 
+[https://platebook.net](https://platebook.net)
+
 We additionally deployed on AWS as well to take advantage of AWS' Elastic Container Service (ECS). However, this required considerably more configuration to get fully working. ECS offers two compute platform options: Elastic Compute Cloud (EC2) or Fargate. Fargate is essentially just an abstraction on top of EC2, and the "serverless" alternative to EC2. With Fargate, AWS fully manages the EC2 instances for you and you only pay for what you use.
 
 Both Fargate and EC2 have different pros and cons. With Fargate, much of the configuration is handled for you, and if you have very low and spotty usage, it can be considerably cheaper than EC2. However, it also means that your IP address will constantly change as the EC2 instances it is utilizing spin up and down. So handling this requires additional configuration as well.
@@ -97,8 +99,6 @@ Our AWS workflow looked something like this:
 4) Create a service on the cluster, configured to use the task definition, and set up the application load balancer, listener, and target
 
 ![AWS Workflow and Services](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/3a0aaab2-32b4-4333-aff6-86289f34d891)
-
-Unfortunately, we ran out of time to finish troubleshooting DNS issues while waiting for DNS changes to resolve, so currently the AWS deployment is not finished. The only permanent domain name we have to use is the application load balancer at: https://plate-book-alb-56310979.us-east-2.elb.amazonaws.com
 
 ## How to Install Locally
 Ensure you have the correct versions of Ruby and Ruby on Rails installed.

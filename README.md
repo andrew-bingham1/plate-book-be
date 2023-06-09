@@ -70,7 +70,8 @@ bundle exec rspec spec
 ```
 
 This application uses the `Simplecov` gem to monitor test coverage. Current coverage is at 100% for the back-end and 98% for the front-end.
-
+## Schema 
+![Screenshot 2023-06-08 at 8 03 21 PM](https://github.com/andrew-bingham1/plate-book-be/assets/119075417/99a83a97-6889-4e66-a4ae-e0dc24f4952c)
 ## Contributors
 
 Andrew Bingham

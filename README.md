@@ -1,5 +1,5 @@
 # Platebook
-This is the front-end repository of our application. For the back-end repository, please visit [plate-book-fe](https://github.com/andrew-bingham1/plate-book-be).\
+This is the back-end repository of our application. For the front-end repository, please visit [plate-book-fe](https://github.com/DysonBreakstone/plate-book-fe).\
 \
 Platebook is a license plate based social media website where anonymous users can share images of notable driving, make posts, and make comments on them. This serves as an alternative method for drivers to share their thoughts and hopefully reduce road aggression. By providing a platform for drivers to express themselves, it may provide a chance for drivers to express gratitude, address traffic safety concerns, or pursue missed connections.
 
@@ -23,9 +23,6 @@ https://app.swaggerhub.com/apis/ANDREWGBINGHAM/PlateBook_BE_Endpoints/1.0#/
 
 ## Schema
 ![Screenshot 2023-06-08 at 8 03 21 PM](https://github.com/andrew-bingham1/plate-book-be/assets/119075417/7c02a1d5-859c-4e76-8941-086ca3c23adf)
-
-## Front End Repo
-https://github.com/DysonBreakstone/plate-book-fe
 
 ## Built Using
 * Rails 7.0.5

@@ -40,13 +40,13 @@ A major goal of this project was to learn and use Docker containers. Docker cont
 2) Docker Image
 3) Docker Container
 
-![Docker Containerization](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/1ad8b3c8-3f07-4313-8014-7611e2f09580)
+![Docker Containerization](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/41cc64fb-c17e-49c1-886c-e28efc4f7f71)
 
 Applications can be packaged into Docker containers for deployment by creating a Dockerfile in the root of the application. The Dockerfile includes environment variables, CLI commands, and all of the configuration necessary to build the application into a Docker image. And then the Docker image can be used to instantiate a container and execute the application inside of it.
 
 Docker containers are a modern virtualization solution that hold several advantages over traditional virtual machines. The core of its benefits largely stems from its ability to directly rely on the host operating system kernel so that it does not need to package the kernel itself. Instead, it only uses a minimal set of libraries that it needs to execute with the host operating system. This keeps Docker containers more lightweight, fast, efficient and portable than its virtual machine counterpart.
 
-![The Anatomy of a Docker Container](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/1307cba2-835b-4e8e-af30-d0ec132e07be)
+![The Anatomy of a Docker Container](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/59b4d7cb-d36f-45db-aa7d-118375973335)
 
 The following tools were used in our Docker workflow:
 
@@ -61,16 +61,16 @@ It is also important to note that Docker containers are intended to be stateless
 
 ### Render Deployment
 
-Front End: https://plate-book-fe.onrender.com/
-Back End: https://plate-book-be.onrender.com/
+Front End: [plate-book-fe.onrender.com](https://plate-book-fe.onrender.com/)
+Back End: [plate-book-be.onrender.com](https://plate-book-be.onrender.com/)
 
 Our first deployment was done on Render, with 2 separate containers for the front end and back end, using a PostgreSQL database.
 
-![Render Deployment](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/f5fc96d1-ff5b-4552-86bc-b2515550927e)
+![Render Deployment](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/9a9a6837-e72c-41fe-b6d0-f36f4f9d5977)
 
 ### AWS Deployment
 
-[https://platebook.net](https://platebook.net)
+[platebook.net](https://platebook.net)
 
 We additionally deployed on AWS as well to take advantage of AWS' Elastic Container Service (ECS). However, this required considerably more configuration to get fully working. ECS offers two compute platform options: Elastic Compute Cloud (EC2) or Fargate. Fargate is essentially just an abstraction on top of EC2, and the "serverless" alternative to EC2. With Fargate, AWS fully manages the EC2 instances for you and you only pay for what you use.
 
@@ -89,7 +89,7 @@ The application load balancer serves as the gateway to the application. The appl
 
 Additionally, our deployment using AWS required additional HTTPS configuration so that the OAuth for our application would work. So we used AWS Route 53 to purchase the domain `platebook.net` and validate the Secure Sockets Layer (SSL) certificate for it. We then added our application load balancer's DNS name as a DNS A Record in our hosting zone for the domain on Route 53. This would handle the automatically HTTPS redirect to our application load balancer for the traffic to continue through the rest of our routing inside of our Virtual Private Cloud (VPC).
 
-![AWS Deployment](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/a7e8a921-80f6-4d3e-8c9d-9b391335af88)
+![AWS Deployment](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/5bc6b510-0d05-42ad-857e-a27989d2859e)
 
 Our AWS workflow looked something like this:
 
@@ -98,7 +98,7 @@ Our AWS workflow looked something like this:
 3) Create a task definition for instantiating and configuring the containers
 4) Create a service on the cluster, configured to use the task definition, and set up the application load balancer, listener, and target
 
-![AWS Workflow and Services](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/3a0aaab2-32b4-4333-aff6-86289f34d891)
+![AWS Workflow and Services](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/3e8efbaa-3596-402e-82e6-c22c85fbd3f2)
 
 ## How to Install Locally
 Ensure you have the correct versions of Ruby and Ruby on Rails installed.

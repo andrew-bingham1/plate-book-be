@@ -18,7 +18,7 @@ Visitors are free to peruse the site.
 * Users can view their posts, comments, and followed plates on their dashboard.
 * Users can search for specific plates or posts using the search box.
 
-## Route Documentation 
+## Route Documentation
 [Swagger Documentation](https://app.swaggerhub.com/apis/ANDREWGBINGHAM/PlateBook_BE_Endpoints/1.0#/)
 
 ## Schema
@@ -70,8 +70,6 @@ Our first deployment was done on Render, with 2 separate containers for the fron
 
 ### AWS Deployment
 
-[https://platebook.net](https://platebook.net)
-
 We additionally deployed on AWS as well to take advantage of AWS' Elastic Container Service (ECS). However, this required considerably more configuration to get fully working. ECS offers two compute platform options: Elastic Compute Cloud (EC2) or Fargate. Fargate is essentially just an abstraction on top of EC2, and the "serverless" alternative to EC2. With Fargate, AWS fully manages the EC2 instances for you and you only pay for what you use.
 
 Both Fargate and EC2 have different pros and cons. With Fargate, much of the configuration is handled for you, and if you have very low and spotty usage, it can be considerably cheaper than EC2. However, it also means that your IP address will constantly change as the EC2 instances it is utilizing spin up and down. So handling this requires additional configuration as well.
@@ -87,7 +85,7 @@ We tried deploying both with Fargate and EC2, but we ultimately opted to go with
 
 The application load balancer serves as the gateway to the application. The application load balancer has a listener attached that routes all traffic for a specific port (or protocol by its port - i.e. port 80 for HTTP traffic or port 443 for HTTPS traffic). The listener then has rules to determine where the traffic should go, which point to the target. And the service/task has a target where it registers/deregisters its IP address changes so that the current EC2 instance being managed by Fargate can be found.
 
-Additionally, our deployment using AWS required additional HTTPS configuration so that the OAuth for our application would work. So we used AWS Route 53 to purchase the domain `platebook.net` and validate the Secure Sockets Layer (SSL) certificate for it. We then added our application load balancer's DNS name as a DNS A Record in our hosting zone for the domain on Route 53. This would handle the automatically HTTPS redirect to our application load balancer for the traffic to continue through the rest of our routing inside of our Virtual Private Cloud (VPC).
+Additionally, our deployment using AWS required additional HTTPS configuration so that the OAuth for our application would work. So we used AWS Route 53 to purchase the domain `platebook.net` (which has now been taken down to save AWS costs) and validate the Secure Sockets Layer (SSL) certificate for it. We then added our application load balancer's DNS name as a DNS A Record in our hosting zone for the domain on Route 53. This would handle the automatically HTTPS redirect to our application load balancer for the traffic to continue through the rest of our routing inside of our Virtual Private Cloud (VPC).
 
 ![AWS Deployment](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/a7e8a921-80f6-4d3e-8c9d-9b391335af88)
 

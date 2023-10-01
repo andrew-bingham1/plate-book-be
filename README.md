@@ -61,8 +61,9 @@ It is also important to note that Docker containers are intended to be stateless
 
 ### Render Deployment
 
-Front End: [plate-book-fe.onrender.com](https://plate-book-fe.onrender.com/)
-Back End: [plate-book-be.onrender.com](https://plate-book-be.onrender.com/)
+- Front End Custom Domain: [platebook.org](https://platebook.org)
+- Front End: [plate-book-fe.onrender.com](https://plate-book-fe.onrender.com/)
+- Back End: [plate-book-be.onrender.com](https://plate-book-be.onrender.com/)
 
 Our first deployment was done on Render, with 2 separate containers for the front end and back end, using a PostgreSQL database.
 
@@ -85,7 +86,7 @@ We tried deploying both with Fargate and EC2, but we ultimately opted to go with
 
 The application load balancer serves as the gateway to the application. The application load balancer has a listener attached that routes all traffic for a specific port (or protocol by its port - i.e. port 80 for HTTP traffic or port 443 for HTTPS traffic). The listener then has rules to determine where the traffic should go, which point to the target. And the service/task has a target where it registers/deregisters its IP address changes so that the current EC2 instance being managed by Fargate can be found.
 
-Additionally, our deployment using AWS required additional HTTPS configuration so that the OAuth for our application would work. So we used AWS Route 53 to purchase the domain `platebook.net` (which has now been taken down to save AWS costs) and validate the Secure Sockets Layer (SSL) certificate for it. We then added our application load balancer's DNS name as a DNS A Record in our hosting zone for the domain on Route 53. This would handle the automatically HTTPS redirect to our application load balancer for the traffic to continue through the rest of our routing inside of our Virtual Private Cloud (VPC).
+Additionally, our deployment using AWS required additional HTTPS configuration so that the OAuth for our application would work. So we used AWS Route 53 to purchase the domain `platebook.org` and validate the Secure Sockets Layer (SSL) certificate for it. We then added our application load balancer's DNS name as a DNS A Record in our hosting zone for the domain on Route 53. This would handle the automatically HTTPS redirect to our application load balancer for the traffic to continue through the rest of our routing inside of our Virtual Private Cloud (VPC).
 
 ![AWS Deployment](https://github.com/DysonBreakstone/plate-book-fe/assets/86636108/5bc6b510-0d05-42ad-857e-a27989d2859e)
 
